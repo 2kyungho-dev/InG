@@ -24,15 +24,15 @@ export default defineConfig({
         start_url: '/',
         display: 'standalone',
         background_color: '#ffffff',
-        theme_color: '#4facfe',
+        theme_color: '#f6f1e7',
         icons: [
           {
-            src: 'icons/icon-192x192.png',
+            src: 'icons/ing-192x192.png',
             sizes: '192x192',
             type: 'image/png'
           },
           {
-            src: 'icons/icon-512x512.png',
+            src: 'icons/ing-512x512.png',
             sizes: '512x512',
             type: 'image/png'
           }
