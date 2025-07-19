@@ -44,59 +44,76 @@ function Home() {
   const yearProgress = getYearProgress();
 
   return (
-    <div className="w-full min-h-screen flex flex-col bg-ing-bg-light overflow-y-auto p-4">
-      <div className="bg-ing-bg shadow-md rounded-lg p-4 mb-4 text-center">
-        <h2 className="text-4xl font-bold text-ing-text mb-1">{timeData.time}</h2>
-        <p className="text-ing-text-muted text-lg mb-1">{timeData.date}</p>
-      </div>
-    
-      <div className="bg-ing-bg shadow-md rounded-lg p-4 mb-4">
-        <h2 className="text-xl font-semibold text-ing-text-muted mb-2">Daily Goal</h2>
-        <p className="text-ing-text">
-          {todayGoalEntry ? todayGoalEntry.quote : "No goal set for today."}
-        </p>
-      </div>
-
-      <div className="bg-ing-bg shadow-md rounded-lg p-4 mb-4">
-        <div className="flex justify-between items-center mb-2">
-          <h2 className="text-2xl font-semibold text-ing-text-muted">{new Date().getFullYear()}</h2>
-          <p className="text-ing-text text-xl">{yearProgress}%</p>
+    <div className="w-full min-h-screen flex flex-col bg-ing-bg-light p-4">
+      <main className="flex-1 overflow-y-auto pb-[env(safe-area-inset-bottom)]">
+        <div className="bg-ing-bg shadow-md rounded-lg p-4 mb-4 text-center">
+          <h2 className="text-4xl font-bold text-ing-text mb-1">{timeData.time}</h2>
+          <p className="text-ing-text-muted text-lg mb-1">{timeData.date}</p>
         </div>
-        <div className="w-full h-2 bg-ing-border-muted rounded-full overflow-hidden">
-          <div
-            className="h-full bg-ing-primary transition-all duration-300"
-            style={{ width: `${yearProgress}%` }}
-          ></div>
-        </div>
-      </div>
-
-      <div className="bg-ing-bg shadow-md rounded-lg p-4 mb-4">
-        <div className="flex justify-between items-center mb-2">
-          <h2 className="text-2xl font-semibold text-ing-text-muted">
-            {new Date().toLocaleDateString("en-US", { month: "long" }).toUpperCase()}
-          </h2>
-          <p className="text-ing-text text-xl">
-            {getMonthProgress()}%
+      
+        <div className="bg-ing-bg shadow-md rounded-lg p-4 mb-4">
+          <h2 className="text-xl font-semibold text-ing-text-muted mb-2">Daily Goal</h2>
+          <p className="text-ing-text">
+            {todayGoalEntry ? todayGoalEntry.quote : "No goal set for today."}
           </p>
         </div>
-        <div className="w-full h-2 bg-ing-border-muted rounded-full overflow-hidden">
-          <div
-            className="h-full bg-ing-primary transition-all duration-300"
-            style={{ width: `${getMonthProgress()}%` }}
-          ></div>
-        </div>
-      </div>
 
-      <div className="flex-1">
-        <RateYourDay />
-      </div>
-      
-      <div className="bg-ing-bg shadow-md rounded-lg p-4 mb-4">
-        <h2 className="text-xl font-semibold text-ing-text-muted mb-2">Daily Goal</h2>
-        <p className="text-ing-text">
-          {todayGoalEntry ? todayGoalEntry.quote : "No goal set for today."}
-        </p>
-      </div>
+        <div className="bg-ing-bg shadow-md rounded-lg p-4 mb-4">
+          <div className="flex justify-between items-center mb-2">
+            <h2 className="text-2xl font-semibold text-ing-text-muted">{new Date().getFullYear()}</h2>
+            <p className="text-ing-text text-xl">{yearProgress}%</p>
+          </div>
+          <div className="w-full h-2 bg-ing-border-muted rounded-full overflow-hidden">
+            <div
+              className="h-full bg-ing-primary transition-all duration-300"
+              style={{ width: `${yearProgress}%` }}
+            ></div>
+          </div>
+        </div>
+
+        <div className="bg-ing-bg shadow-md rounded-lg p-4 mb-4">
+          <div className="flex justify-between items-center mb-2">
+            <h2 className="text-2xl font-semibold text-ing-text-muted">
+              {new Date().toLocaleDateString("en-US", { month: "long" }).toUpperCase()}
+            </h2>
+            <p className="text-ing-text text-xl">
+              {getMonthProgress()}%
+            </p>
+          </div>
+          <div className="w-full h-2 bg-ing-border-muted rounded-full overflow-hidden">
+            <div
+              className="h-full bg-ing-primary transition-all duration-300"
+              style={{ width: `${getMonthProgress()}%` }}
+            ></div>
+          </div>
+        </div>
+
+        <div className="mb-4">
+          <RateYourDay />
+        </div>
+        
+        <div className="bg-ing-bg shadow-md rounded-lg p-4 mb-4">
+          <h2 className="text-xl font-semibold text-ing-text-muted mb-2">Daily Goal</h2>
+          <p className="text-ing-text">
+            {todayGoalEntry ? todayGoalEntry.quote : "No goal set for today."}
+          </p>
+        </div>
+
+        <div className="bg-ing-bg shadow-md rounded-lg p-4 mb-4">
+          <h2 className="text-xl font-semibold text-ing-text-muted mb-2">Daily Goal</h2>
+          <p className="text-ing-text">
+            {todayGoalEntry ? todayGoalEntry.quote : "No goal set for today."}
+          </p>
+        </div>
+
+        <div className="bg-ing-bg shadow-md rounded-lg p-4 mb-4">
+          <h2 className="text-xl font-semibold text-ing-text-muted mb-2">Daily Goal</h2>
+          <p className="text-ing-text">
+            {todayGoalEntry ? todayGoalEntry.quote : "No goal set for today."}
+          </p>
+        </div>
+        
+      </main>
     </div>
   );
 }

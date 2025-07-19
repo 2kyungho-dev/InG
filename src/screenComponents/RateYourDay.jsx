@@ -27,7 +27,7 @@ export default function RateYourDay() {
 };
 
 return (
-    <div className="bg-ing-bg p-4 rounded-xl shadow-md text-ing-text text-center space-y-2">
+    <div className="bg-ing-bg p-4 rounded-xl shadow-md text-ing-text text-center">
         <h2 className="text-lg font-semibold">오늘 하루 어땠나요?</h2>
         <div className="flex justify-center gap-4 text-3xl">
             {Object.entries(moodIcons).map(([key, icon]) => (
