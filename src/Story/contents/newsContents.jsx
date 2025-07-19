@@ -48,7 +48,7 @@ const NewsSlide = ({ type = 1 }) => {
   };
 
   return (
-    <div className="max-h-screen overflow-y-auto p-5 bg-ing-bg text-ing-text">
+    <div className="w-full h-full overflow-y-auto p-4 bg-ing-bg text-ing-text">
       <h2 className="text-center text-2xl font-bold text-ing-primary mb-6">
         {sectionTitles[type] || "뉴스"}
       </h2>

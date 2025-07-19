@@ -176,56 +176,40 @@ export default function QuoteSlide({ type = "random" }) {
     }
 
     if (type === "daily") {
-        return (
-            <div className="w-full min-h-screen flex items-start justify-center pt-20 bg-ing-bg-dark text-ing-text">
-                <div
-                    className="bg-ing-bg-dark text-ing-text rounded-lg w-full max-w-md flex flex-col items-center justify-center text-center h-full"
-                    onTouchStart={(e) => e.stopPropagation()}
-                    onTouchEnd={(e) => e.stopPropagation()}
-                >
-                    <h2 className="text-4xl font-extrabold text-ing-primary mb-30">Today's Goal</h2>
-                    {todayGoalEntry ? (
-                        <>
-                            <p className="text-xl font-bold text-ing-text mb-10">{todayGoalEntry.quote}</p>
-                            <input
-                                type="text"
-                                className="px-2 py-1 rounded text-ing-text w-full max-w-xs mb-3 bg-ing-bg placeholder-gray-400"
-                                value={inputGoal}
-                                onChange={(e) => setInputGoal(e.target.value)}
-                            />
-                            <button
-                                onClick={() => {
-                                  dispatch(addDailyGoal(inputGoal));
-                                  setInputGoal("");
-                                }}
-                                className="bg-ing-primary text-ing-bg-light px-3 py-1 rounded hover:bg-ing-primary/90"
-                            >
-                                Update Goal
-                            </button>
-                        </>
-                    ) : (
-                        <>
-                            <input
-                                type="text"
-                                className="px-2 py-1 rounded text-ing-text w-full max-w-xs mb-4 bg-ing-bg placeholder-gray-400"
-                                placeholder="Enter your goal for today"
-                                value={inputGoal}
-                                onChange={(e) => setInputGoal(e.target.value)}
-                            />
-                            <button
-                                onClick={() => {
-                                  dispatch(addDailyGoal(inputGoal));
-                                  setInputGoal("");
-                                }}
-                                className="bg-ing-primary text-ing-bg-light px-3 py-1 rounded hover:bg-ing-primary/90"
-                            >
-                                Save Goal
-                            </button>
-                        </>
-                    )}
-                </div>
-            </div>
-        );
+      const handleSave = () => {
+        dispatch(addDailyGoal(inputGoal));
+        setInputGoal("");
+      };
+
+      return (
+        <div className="w-full min-h-screen flex items-start justify-center pt-20 bg-ing-bg-dark text-ing-text">
+          <div
+            className="bg-ing-bg-dark text-ing-text rounded-lg w-full max-w-md flex flex-col items-center justify-center text-center h-full"
+          >
+            <h2 className="text-4xl font-extrabold text-ing-primary mb-30">Today's Goal</h2>
+            {todayGoalEntry && (
+              <p className="text-xl font-bold text-ing-text mb-10">{todayGoalEntry.quote}</p>
+            )}
+            <input
+              type="text"
+              className="px-2 py-1 rounded text-ing-text w-full max-w-xs mb-4 bg-ing-bg placeholder-gray-400"
+              placeholder="Enter your goal for today"
+              value={inputGoal}
+              onChange={(e) => setInputGoal(e.target.value)}
+              onTouchStart={(e) => e.stopPropagation()}
+              onTouchEnd={(e) => e.stopPropagation()}
+            />
+            <button
+              onClick={handleSave}
+              onTouchStart={(e) => e.stopPropagation()}
+              onTouchEnd={(e) => e.stopPropagation()}
+              className="bg-ing-primary text-ing-bg-light px-3 py-1 rounded hover:bg-ing-primary/90"
+            >
+              {todayGoalEntry ? "Update Goal" : "Save Goal"}
+            </button>
+          </div>
+        </div>
+      );
     }
 
     // type === "random" or any other

@@ -36,7 +36,7 @@ export default function StoryCard({ nextStory, contents, currentStory, idx, onCl
     const duration = Date.now() - touchStartTime.current;
     pauseRef.current = false;
 
-    if (duration < 500) {
+    if (duration < 100) {
       if (touchX < screenWidth * 0.3) {
         if (current === 0) {
           handleBeforeStory();

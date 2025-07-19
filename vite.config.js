@@ -23,7 +23,7 @@ export default defineConfig({
         short_name: 'In:G',
         start_url: '/',
         display: 'standalone',
-        background_color: '#ffffff',
+        background_color: '#f6f1e7',
         theme_color: '#f6f1e7',
         icons: [
           {

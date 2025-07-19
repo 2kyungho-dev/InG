@@ -99,20 +99,6 @@ function Home() {
           </p>
         </div>
 
-        <div className="bg-ing-bg shadow-md rounded-lg p-4 mb-4">
-          <h2 className="text-xl font-semibold text-ing-text-muted mb-2">Daily Goal</h2>
-          <p className="text-ing-text">
-            {todayGoalEntry ? todayGoalEntry.quote : "No goal set for today."}
-          </p>
-        </div>
-
-        <div className="bg-ing-bg shadow-md rounded-lg p-4 mb-4">
-          <h2 className="text-xl font-semibold text-ing-text-muted mb-2">Daily Goal</h2>
-          <p className="text-ing-text">
-            {todayGoalEntry ? todayGoalEntry.quote : "No goal set for today."}
-          </p>
-        </div>
-        
       </main>
     </div>
   );
