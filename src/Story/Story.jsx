@@ -79,15 +79,22 @@ export default function Story({ onClose }) {
   }
 
   return (
-    <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }}>
+    <div style={{ 
+      width: "100vw", 
+      height: "100dvh", 
+      overflow: "hidden", 
+      paddingTop: "env(safe-area-inset-top)", 
+      paddingBottom: "env(safe-area-inset-bottom)", 
+      boxSizing: "border-box" 
+      }}>
       <div
         style={{
           width: `${allStories.length * 100}vw`,
-          height: "100vh",
+          height: "calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom))",
           display: "flex",
           transform: `translateX(-${currentStory * 100}vw)`,
           transition: "transform 0.5s ease",
-          touchAction: "pan-y"
+          touchAction: "pan-x"
         }}
         onTouchStart={e => {
           timerRef.currentStory = {

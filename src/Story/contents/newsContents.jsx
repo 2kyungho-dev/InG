@@ -34,10 +34,23 @@ const NewsSlide = ({ type = 1 }) => {
       }
     }
 
+    async function fetchN8nNews() {
+      const today = new Date().toISOString().slice(0, 10);
+      const docRef = doc(db, "n8nnews", today);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        setArticles(data.articles || []);
+      } else {
+        console.log("No Naver news found for today.");
+      }
+    }
+
     if (type === 1) {
       fetchNaverNews();
     } else if (type === 2) {
-      fetchFinanceNews();
+      fetchN8nNews();
     }
   }, [type]);
 

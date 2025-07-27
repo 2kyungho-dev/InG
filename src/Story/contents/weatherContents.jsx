@@ -100,8 +100,8 @@ const WeatherSlide = () => {
   };
 
 return (
-    <div className="w-full h-full text-ing-text bg-ing-bg">
-      <div className="p-4 border border-ing-border rounded-xl w-full bg-ing-bg">
+    <div className="w-full h-full text-ing-text bg-ing-bg text-center p-6">
+      <div className="p-3 rounded-xl w-full bg-ing-bg">
         <h2 className="text-xl font-bold text-ing-text mb-4">{dayIcon} 오늘의 날씨</h2>
         {error && <p className="text-red-500">{error}</p>}
 

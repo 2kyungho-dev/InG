@@ -10,11 +10,10 @@ html,
 #root {
   margin: 0;
   padding-top: var(--safe-top);
-  padding-bottom: var(--safe-bottom);
+  /* padding-bottom: var(--safe-bottom); */
   padding-left: var(--safe-left);
   padding-right: var(--safe-right);
   height : 100%;
-  overflow: auto;
 }
 
 .App {
@@ -22,7 +21,6 @@ html,
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 100vh;
   padding: 0;
   margin: 0;
 }
@@ -36,31 +34,30 @@ html,
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100dvh;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 999;
+  overflow: hidden;
 }
 
 .story-frame {
   position: absolute;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: env(safe-area-inset-bottom);
+  padding-top: env(safe-area-inset-top);
 }
 
 .story-content {
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 8px;
   max-width: 600px;
   width: 100%;
-  height: 95%;
-  top: 5%;
+  height: 100%;
+  /* top: 5%; */
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
   position: absolute;
   transition: opacity 0.3s ease;
@@ -75,11 +72,11 @@ html,
 
 .story-close {
   position: absolute;
-  top: 0.4rem;
-  right: 0.4rem;
+  top: 0.5rem;
+  right: 0.5rem;
   cursor: pointer;
   font-size: 1.5rem;
-  color: #fff;
+  color: #111111; /* need to change the color */
   border: none;
   background: none;
   z-index: 1002;

@@ -28,7 +28,7 @@ export default function BasicSlide({ type }) {
   }
 
   return (
-    <div className="bg-ing-bg-dark text-ing-text p-6 pt-70 rounded text-2xl font-semibold w-full h-full flex flex-col items-center justify-start text-center gap-4">
+    <div className="bg-ing-bg-dark text-ing-text p-6 pt-70 text-2xl font-semibold w-full h-full flex flex-col items-center justify-start text-center gap-4">
       {content}
     </div>
   );

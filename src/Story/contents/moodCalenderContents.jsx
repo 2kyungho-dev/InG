@@ -38,7 +38,7 @@ export default function MoodCalendarSlide() {
   ];
 
 return (
-    <div className="w-full h-full bg-ing-bg-dark text-ing-text p-6 rounded-xl text-center">
+    <div className="w-full h-full bg-ing-bg-dark text-ing-text p-6 text-center">
         <div className="flex justify-between items-center mb-4">
             <button 
             onClick={() => setOffset(offset - 1)}
