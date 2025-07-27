@@ -18,7 +18,7 @@ const WeatherSlide = () => {
         const cached = localStorage.getItem(STORAGE_KEY);
         if (cached) {
           const parsed = JSON.parse(cached);
-          if (parsed.date === today) {
+            if (parsed.date === today && parsed.data.length > 0) {
             setWeatherData(parsed.data);
             setIsRainyDay(parsed.isRainyDay);
             setDayIcon(parsed.dayIcon);

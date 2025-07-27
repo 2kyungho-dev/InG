@@ -87,7 +87,7 @@ const KoreaStockKRX = ({ itemName }) => {
   }, [itemName]);
 
   return (
-    <div className="h-full border border-ing-border bg-ing-bg text-ing-text rounded-lg">
+    <div className="h-full border border-ing-border bg-ing-bg text-ing-text">
       <h2 className="text-xl font-semibold text-ing-primary m-4">📈 {itemName} 주식 정보</h2>
       {error && <p className="text-red-500">{error}</p>}
       {stockData && stockData.length >= 7 ? (
