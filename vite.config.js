@@ -27,12 +27,12 @@ export default defineConfig({
         theme_color: '#f6f1e7',
         icons: [
           {
-            src: 'icons/ing-192x192.png',
+            src: 'icons/ing_192x192.png',
             sizes: '192x192',
             type: 'image/png'
           },
           {
-            src: 'icons/ing-512x512.png',
+            src: 'icons/ing_512x512.png',
             sizes: '512x512',
             type: 'image/png'
           }

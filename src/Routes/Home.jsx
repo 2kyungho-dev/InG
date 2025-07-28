@@ -46,9 +46,9 @@ function Home() {
   return (
     <div className="w-full min-h-screen flex flex-col bg-ing-bg-light p-4">
       <main className="flex-1 overflow-y-auto pb-[env(safe-area-inset-bottom)]">
-        <div className="bg-ing-bg shadow-md rounded-lg p-4 mb-4 text-center">
-          <h2 className="text-4xl font-bold text-ing-text mb-1">{timeData.time}</h2>
-          <p className="text-ing-text-muted text-lg mb-1">{timeData.date}</p>
+        <div className="bg-ing-bg shadow-md rounded-lg p-4 mb-4 text-center space-y-1">
+          <h2 className="text-4xl font-bold text-ing-text m-0">{timeData.time}</h2>
+          <p className="text-ing-text-muted text-lg m-0">{timeData.date}</p>
         </div>
       
         <div className="bg-ing-bg shadow-md rounded-lg p-4 mb-4">
