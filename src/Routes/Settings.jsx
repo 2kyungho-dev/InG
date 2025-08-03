@@ -3,9 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addStock, removeStock } from '../store/stockSlice';
 import { setLifeGoals } from '../store/goalSlice';
 import stockDatabase from '../data/kr_stocks.json';
+import QuoteSettings from '../SettingComponents/quoteSettings.jsx';
 
 function Settings() {
-  const [activePanel, setActivePanel] = useState("main");
+  const [activePanel, setActivePanel] = useState("main"); // main, story, stock, goals, quotes, weather, news
   const [showModal, setShowModal] = useState(false);
   const [newStock, setNewStock] = useState('');
   const [suggestions, setSuggestions] = useState([]);
@@ -75,7 +76,11 @@ return (
                 <span className="settings-item-label">주식 설정</span>
                 <span className="arrow">→</span>
             </button>
-            <button className="flex justify-between items-center w-[calc(100%-3rem)] mx-4 my-3 p-4 text-left border border-ing-border rounded-lg bg-ing-bg-light text-lg font-medium shadow hover:bg-ing-bg-light/90" onClick={() => setActivePanel("quote")}>
+            <button className="flex justify-between items-center w-[calc(100%-3rem)] mx-4 my-3 p-4 text-left border border-ing-border rounded-lg bg-ing-bg-light text-lg font-medium shadow hover:bg-ing-bg-light/90" onClick={() => setActivePanel("goals")}>
+                <span className="settings-item-label">목표 설정</span>
+                <span className="arrow">→</span>
+            </button>
+            <button className="flex justify-between items-center w-[calc(100%-3rem)] mx-4 my-3 p-4 text-left border border-ing-border rounded-lg bg-ing-bg-light text-lg font-medium shadow hover:bg-ing-bg-light/90" onClick={() => setActivePanel("quotes")}>
                 <span className="settings-item-label">명언 설정</span>
                 <span className="arrow">→</span>
             </button>
@@ -88,6 +93,7 @@ return (
                 <span className="arrow">→</span>
             </button>
         </div>
+
 
         <div
             className={`absolute w-full h-screen bg-ing-bg-light top-0 left-0 transition-transform duration-300 z-10 ${
@@ -191,9 +197,9 @@ return (
     )}
 
 
-    <div className={`absolute w-full h-screen bg-ing-bg-light top-0 left-0 transition-transform duration-300 z-10 ${activePanel === 'quote' ? 'translate-x-0' : 'translate-x-full hidden'}`}>
+    <div className={`absolute w-full h-screen bg-ing-bg-light top-0 left-0 transition-transform duration-300 z-10 ${activePanel === 'goals' ? 'translate-x-0' : 'translate-x-full hidden'}`}>
         <button className="px-4 py-3 text-left text-ing-primary font-semibold hover:underline" onClick={() => setActivePanel("story")}>← 뒤로</button>
-        <h2 className="text-center text-xl font-semibold mt-4">명언 설정</h2>
+        <h2 className="text-center text-xl font-semibold mt-4">목표 설정</h2>
         <div className="mt-6 mx-4 p-4 bg-ing-bg rounded-lg shadow">
           <h3 className="text-lg font-semibold mb-4">인생 목표 설정</h3>
           {[0, 1, 2].map((index) => (
@@ -221,6 +227,11 @@ return (
         </div>
     </div>
 
+
+    <div className={`absolute w-full h-screen bg-ing-bg-light top-0 left-0 transition-transform duration-300 z-10 ${activePanel === 'quotes' ? 'translate-x-0' : 'translate-x-full hidden'}`}>
+        <button className="px-4 py-3 text-left text-ing-primary font-semibold hover:underline" onClick={() => setActivePanel("story")}>← 뒤로</button>
+          <QuoteSettings />
+    </div>
 
     <div className={`absolute w-full h-screen bg-ing-bg-light top-0 left-0 transition-transform duration-300 z-10 ${activePanel === 'weather' ? 'translate-x-0' : 'translate-x-full hidden'}`}>
         <button className="px-4 py-3 text-left text-ing-primary font-semibold hover:underline" onClick={() => setActivePanel("story")}>← 뒤로</button>

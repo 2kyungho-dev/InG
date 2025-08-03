@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import stockReducer from './stockSlice';
 import goalReducer from './goalSlice';
+import quoteReducer from './quoteSlice';
 
 const store = configureStore({
   reducer: {
     stocks: stockReducer,
     goals: goalReducer,
+    likedQuotes: quoteReducer,
   },
 });
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { HeartFill, Share } from "react-bootstrap-icons";
+import { useSelector, useDispatch } from "react-redux";
+import { addQuote, removeQuote, toggleQuote } from "../../store/quoteSlice";
 import { addDailyGoal } from "../../store/goalSlice";
 
 const quotes = [
@@ -139,7 +140,7 @@ function getTodayQuote() {
     return quotes[index];
 }
 
-export default function QuoteSlide({ type = "random" }) {
+export default function QuoteSlide({ type = "random" , order=0}) {
     const lifeGoals = useSelector((state) => state.goals.lifeGoals);
     const dailyGoals = useSelector((state) => state.goals.dailyGoals);
     const today = new Date().toISOString().split('T')[0];
@@ -212,16 +213,95 @@ export default function QuoteSlide({ type = "random" }) {
       );
     }
 
-    // type === "random" or any other
+    if (type === "random") {
     const { quote, author, translation } = getTodayQuote();
+    // Check if today's quote is already liked
+    const likedQuotes = useSelector(state => state.likedQuotes);
+    const liked = likedQuotes.some(q => q.text === quote || q.quote === quote);
 
-    return (
-        <div className="w-full min-h-screen flex items-start justify-center pt-50 bg-ing-bg-dark text-ing-text">
-            <div className="bg-ing-bg-dark text-ing-text px-4 py-8 rounded-lg w-full max-w-md flex flex-col items-center justify-center text-center h-full">
+    const handleToggleLike = () => {
+        dispatch(toggleQuote({ quote, author, translation }));
+    }
+
+      return (
+        <div className="w-full h-full flex flex-col justify-between items-center pt-10 bg-ing-bg-dark text-ing-text">
+            <div>
+                <h2 className="text-xl font-bold text-ing-primary text-center">
+                    Today's Quote
+                </h2>
+            </div>
+            <div className="px-4 py-8 rounded-lg w-full max-w-md flex flex-col items-center justify-center text-center -mt-20">
                 <p className="text-3xl sm:text-4xl font-semibold text-ing-primary mb-6">“{quote}”</p>
                 <p className="text-md italic text-ing-border-muted mb-3">— {author}</p>
                 <p className="text-sm text-ing-text-muted mt-6">{translation}</p>
             </div>
+            <div className="w-full flex justify-between px-8 pb-8">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  console.log("Share clicked");
+                }}
+                onTouchStart={(e) => e.stopPropagation()}
+                onTouchEnd={(e) => e.stopPropagation()}
+                className="text-ing-text-muted hover:text-ing-primary text-lg"
+              >
+                <Share className="w-6 h-6" />
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                    handleToggleLike();
+                }}
+                onTouchStart={(e) => e.stopPropagation()}
+                onTouchEnd={(e) => e.stopPropagation()}
+                className="text-lg"
+              >
+                <HeartFill
+                  className={`w-6 h-6 ${liked ? "text-red-500" : "text-ing-text-muted hover:text-ing-primary"}`}
+                />
+              </button>
+            </div>
         </div>
-    );
+      );
+    }
+
+    if (type === "myquotes") {
+        const likedQuotes = useSelector(state => state.likedQuotes);
+        const quoteData = likedQuotes.find(q => q.order === order) || getTodayQuote();
+        const { quote, author, translation } = quoteData;
+
+        return (
+          <div className="w-full h-full flex flex-col justify-between items-center pt-10 bg-ing-bg-dark text-ing-text">
+            <div>
+                <h2 className="text-xl font-bold text-ing-primary text-center">
+                    Liked Quotes
+                </h2>
+            </div>
+            <div className="px-4 py-8 rounded-lg w-full max-w-md flex flex-col items-center justify-center text-center -mt-20">
+                <p className="text-3xl sm:text-4xl font-semibold text-ing-primary mb-6">“{quote}”</p>
+                <p className="text-md italic text-ing-border-muted mb-3">— {author}</p>
+                <p className="text-sm text-ing-text-muted mt-6">{translation}</p>
+            </div>
+            <div className="w-full flex justify-between px-8 pb-8">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  console.log("Share clicked");
+                }}
+                onTouchStart={(e) => e.stopPropagation()}
+                onTouchEnd={(e) => e.stopPropagation()}
+                className="text-ing-text-muted hover:text-ing-primary text-lg"
+              >
+                <Share className="w-6 h-6" />
+              </button>
+              <button>
+                <HeartFill
+                  className={"w-6 h-6 text-red-500"}
+                />
+              </button>
+            </div>
+          </div>
+        );
+
+    }
 }

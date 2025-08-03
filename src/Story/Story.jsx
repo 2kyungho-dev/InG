@@ -34,11 +34,6 @@ const weatherContents = [
   { component: <WeatherSlide /> },
 ];
 
-const quoteContents = [
-  { component: <QuoteSlide type="random"/> },
-  { component: <QuoteSlide type="life"/> },
-  { component: <QuoteSlide type="daily"/> },
-];
 
 const moodCalenderContents = [
   { component: <MoodCalendarSlide /> },
@@ -50,10 +45,29 @@ export default function Story({ onClose }) {
   const [currentStory, setCurrentStory] = useState(0);
   const timerRef = useRef(null);
   const stocks = useSelector((state) => state.stocks.list);
+  const quotes = useSelector((state) => state.likedQuotes);
+
 
   const stockContents = stocks.map((stock, i) => ({
     component: <KoreaStockKRX key={i} itemName={stock.name} />
   }));
+
+  // Filter out invisible quotes and map them to components
+  const myQuoteContents = quotes.map((quote, i) => {
+    if (quote.isVisible === true) {
+      return { component: <QuoteSlide type="myquotes" order={quote.order} /> }
+    } else {
+      return null; // Filter out invisible quotes
+    }
+  }).filter(content => content !== null); // Remove null entries
+  
+  const quoteContents = [
+    { component: <QuoteSlide type="random"/> },
+    ...myQuoteContents,
+    { component: <QuoteSlide type="life"/> },
+    { component: <QuoteSlide type="daily"/> },
+  ];
+
 
   const allStories = [
     basicContents,
@@ -74,23 +88,23 @@ export default function Story({ onClose }) {
 
   function handleBeforeStory() {
     if (currentStory > 0) {
-      setCurrentStory(c => c - 1);
+      setCurrentStory(c => c - 1); 
     }
   }
 
   return (
     <div style={{ 
       width: "100vw", 
-      height: "100dvh", 
+      height: "calc(100dvh - env(safe-area-inset-top))", 
       overflow: "hidden", 
-      paddingTop: "env(safe-area-inset-top)", 
-      paddingBottom: "env(safe-area-inset-bottom)", 
+      // paddingTop: "env(safe-area-inset-top)", 
+      // paddingBottom: "env(safe-area-inset-bottom)", 
       boxSizing: "border-box" 
       }}>
       <div
         style={{
           width: `${allStories.length * 100}vw`,
-          height: "calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom))",
+          height: "calc(100dvh - env(safe-area-inset-top))",
           display: "flex",
           transform: `translateX(-${currentStory * 100}vw)`,
           transition: "transform 0.5s ease",

@@ -9,7 +9,7 @@ const NewsSlide = ({ type = 1 }) => {
 
   useEffect(() => {
     async function fetchNaverNews() {
-      const today = new Date().toISOString().slice(0, 10);
+      const today = new Date().toLocaleDateString('en-CA');
       const docRef = doc(db, "news", today);
       const docSnap = await getDoc(docRef);
 
@@ -22,7 +22,7 @@ const NewsSlide = ({ type = 1 }) => {
     }
 
     async function fetchFinanceNews() {
-      const today = new Date().toISOString().slice(0, 10);
+      const today = new Date().toLocaleDateString('en-CA');
       const docRef = doc(db, "news", today);
       const docSnap = await getDoc(docRef);
 
@@ -35,7 +35,7 @@ const NewsSlide = ({ type = 1 }) => {
     }
 
     async function fetchN8nNews() {
-      const today = new Date().toISOString().slice(0, 10);
+      const today = new Date().toLocaleDateString('en-CA');
       const docRef = doc(db, "n8nnews", today);
       const docSnap = await getDoc(docRef);
 
@@ -43,7 +43,7 @@ const NewsSlide = ({ type = 1 }) => {
         const data = docSnap.data();
         setArticles(data.articles || []);
       } else {
-        console.log("No Naver news found for today.");
+        console.log("No Naver news found for today. News updated in 06:00");
       }
     }
 
@@ -74,7 +74,6 @@ const NewsSlide = ({ type = 1 }) => {
             {he
               .decode(article.title)
               .replace(/<[^>]*>/g, "") // Remove HTML tags
-              .replace(/^[^\]]*\]\s*/, "") // Remove everything up to and including the first ']' and any trailing space
               .trim()}
           </h3>
           <a
@@ -82,6 +81,9 @@ const NewsSlide = ({ type = 1 }) => {
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm underline text-ing-primary"
+            onClick={(e) => e.stopPropagation()}
+            onTouchStart={(e) => e.stopPropagation()}
+            onTouchEnd={(e) => e.stopPropagation()}
           >
             📰 원문 보기
           </a>

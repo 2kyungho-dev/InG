@@ -6,9 +6,10 @@ import { Link } from 'react-router-dom';
 export default function BottomNav({onExploreClick}) {
     return (
     <Navbar
-      fixed="bottom"
-      className="bg-ing-bg-dark border-t border-ing-border-muted py-2 px-3"
-    >
+  fixed="bottom"
+  className="bg-ing-bg-dark border-t border-ing-border-muted py-2 px-3"
+  style={{ height: '80px' }} // or whatever height is appropriate
+>
       <Nav className="w-100 d-flex justify-content-between">
         
         <Nav.Link

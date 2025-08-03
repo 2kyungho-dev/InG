@@ -114,7 +114,12 @@ return (
             )}
             <h3 className="text-sm font-semibold text-ing-text-muted mb-2">시간대별 강수</h3>
             <div className="overflow-x-auto">
-              <div className="flex whitespace-nowrap gap-2 px-2">
+              <div 
+              className="flex whitespace-nowrap gap-2 px-2"
+              onClick={(e) => e.stopPropagation()}
+              onTouchStart={(e) => e.stopPropagation()}
+              onTouchEnd={(e) => e.stopPropagation()}
+              >
                 {weatherData.map((d) => {
                   const hourNum = parseInt(d.hour, 10);
 
